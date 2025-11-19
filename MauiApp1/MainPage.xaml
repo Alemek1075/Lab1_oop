@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiApp1.MainPage">
+
+    <Grid>
+        <Grid RowDefinitions="Auto,*,Auto" Padding="10" ZIndex="0">
+
+            <ScrollView Grid.Row="0" Orientation="Horizontal" Margin="0,0,0,10">
+                <HorizontalStackLayout Spacing="10" VerticalOptions="Center">
+
+                    <Button x:Name="ModeButton" 
+                            Text="Режим: Вирази" 
+                            Clicked="ToggleMode_Clicked" 
+                            FontAttributes="Bold"
+                            BackgroundColor="{StaticResource Primary}"
+                            TextColor="{StaticResource White}"/>
+
+                    <BoxView WidthRequest="1" Color="Gray" Margin="5,0"/>
+
+                    <Button Text="Додати рядок" Clicked="AddRow_Clicked"/>
+                    <Button Text="Додати стовпчик" Clicked="AddCol_Clicked"/>
+                    <Button Text="Видалити рядок" Clicked="DelRow_Clicked"/>
+                    <Button Text="Видалити стовпчик" Clicked="DelCol_Clicked"/>
+
+                    <BoxView WidthRequest="1" Color="Gray" Margin="5,0"/>
+
+                    <Button Text="Зберегти" Clicked="Save_Clicked"/>
+                    <Button Text="Завантажити" Clicked="Load_Clicked"/>
+
+                    <BoxView WidthRequest="1" Color="Gray" Margin="5,0"/>
+
+                    <Button Text="Довідка" Clicked="Help_Clicked"/>
+                    <Button Text="Про програму" Clicked="About_Clicked"/>
+                    <Button Text="Вийти" Clicked="Exit_Clicked" BackgroundColor="{StaticResource Secondary}" TextColor="Black"/>
+                </HorizontalStackLayout>
+            </ScrollView>
+
+            <ScrollView Grid.Row="1" Orientation="Both">
+                <Grid x:Name="MainGrid" BackgroundColor="Gray" ColumnSpacing="1" RowSpacing="1">
+                </Grid>
+            </ScrollView>
+
+            <Label x:Name="StatusLabel" Grid.Row="2" Text="Зміни збережено" Margin="5"/>
+        </Grid>
+
+        <Grid x:Name="ExitDialog" IsVisible="False" BackgroundColor="#99000000" ZIndex="1">
+            <Frame BackgroundColor="{AppThemeBinding Light=White, Dark=#333333}" 
+                   BorderColor="Gray"
+                   CornerRadius="15"
+                   HorizontalOptions="Center" 
+                   VerticalOptions="Center" 
+                   WidthRequest="550" 
+                   Padding="25"
+                   HasShadow="True">
+
+                <VerticalStackLayout Spacing="25">
+                    <Label Text="Є незбережені зміни. Вийти?" 
+                           FontSize="20" 
+                           FontAttributes="Bold" 
+                           HorizontalTextAlignment="Center"
+                           TextColor="{AppThemeBinding Light=Black, Dark=White}"/>
+
+                    <HorizontalStackLayout Spacing="15" HorizontalOptions="Center">
+                        <Button Text="Зберегти та вийти" 
+                                Clicked="DialogSaveExit_Clicked" 
+                                BackgroundColor="{StaticResource Primary}" 
+                                TextColor="White"
+                                WidthRequest="160"/>
+
+                        <Button Text="Не зберігати" 
+                                Clicked="DialogNoSave_Clicked" 
+                                BackgroundColor="#D32F2F" 
+                                TextColor="White"
+                                WidthRequest="140"/>
+
+                        <Button Text="Скасувати" 
+                                Clicked="DialogCancel_Clicked" 
+                                BackgroundColor="Gray" 
+                                TextColor="White"
+                                WidthRequest="120"/>
+                    </HorizontalStackLayout>
+                </VerticalStackLayout>
+            </Frame>
+        </Grid>
+    </Grid>
+
+</ContentPage>
