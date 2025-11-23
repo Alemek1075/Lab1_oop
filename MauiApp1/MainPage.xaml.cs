@@ -399,7 +399,7 @@ public partial class MainPage : ContentPage
 #if WINDOWS
         var savePicker = new Windows.Storage.Pickers.FileSavePicker();
         savePicker.SuggestedStartLocation = Windows.Storage.Pickers.PickerLocationId.DocumentsLibrary;
-        savePicker.FileTypeChoices.Add("Excel-like XML", new List<string>() { ".xlcx" });
+        savePicker.FileTypeChoices.Add("Excel-like XML", new List<string>() { ".xlsx" });
         savePicker.FileTypeChoices.Add("CSV", new List<string>() { ".csv" });
         savePicker.SuggestedFileName = "MyTable";
 
@@ -431,7 +431,7 @@ public partial class MainPage : ContentPage
         return false;
 #else
         string content = GetXmlContent();
-        string path = Path.Combine(FileSystem.AppDataDirectory, "table.xlcx");
+        string path = Path.Combine(FileSystem.AppDataDirectory, "table.xlsx");
         await File.WriteAllTextAsync(path, content);
         _isDirty = false;
         UpdateStatus($"Збережено (локально): {path}");
@@ -524,7 +524,7 @@ public partial class MainPage : ContentPage
                 PickerTitle = "Оберіть файл",
                 FileTypes = new FilePickerFileType(new Dictionary<DevicePlatform, IEnumerable<string>>
                 {
-                    { DevicePlatform.WinUI, new[] { ".xlcx", ".csv" } },
+                    { DevicePlatform.WinUI, new[] { ".xlsx", ".csv" } },
                     { DevicePlatform.Android, new[] { "application/xml", "text/csv" } },
                     { DevicePlatform.MacCatalyst, new[] { "public.xml", "public.comma-separated-values-text" } },
                 })
